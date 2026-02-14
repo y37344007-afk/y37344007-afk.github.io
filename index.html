@@ -4,265 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luna's Art | 插畫與角色設計</title>
-    <style>
-        :root {
-            /* 調整這裡的顏色可以改變整站風格 */
-            --primary: #8e7cc3; /* 主色調：紫藤色 */
-            --secondary: #f3f0f9; /* 背景淺色 */
-            --text-dark: #2c2c2c;
-            --text-gray: #666;
-            --white: #ffffff;
-            --card-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            --radius: 16px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
-        }
-
-        body {
-            background-color: var(--secondary);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        /* --- 導航列 --- */
-        nav {
-            position: sticky;
-            top: 0;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: var(--text-gray);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-link:hover {
-            color: var(--primary);
-        }
-
-        /* --- 容器 --- */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
-
-        /* --- 個人簡介 (Hero) --- */
-        .profile-header {
-            text-align: center;
-            padding: 3rem 0;
-        }
-
-        .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--white);
-            box-shadow: var(--card-shadow);
-            margin-bottom: 1rem;
-        }
-
-        .status-badge {
-            display: inline-block;
-            background: #d4edda;
-            color: #155724; /* 綠色代表開放，紅色可用 #f8d7da / #721c24 */
-            padding: 0.25rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            margin-top: 0.5rem;
-        }
-
-        .social-links {
-            margin-top: 1rem;
-        }
-        
-        .social-links a {
-            margin: 0 0.5rem;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        /* --- 通用標題 --- */
-        h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        h2::after {
-            content: '';
-            display: block;
-            width: 40px;
-            height: 3px;
-            background: var(--primary);
-            margin: 8px auto 0;
-            border-radius: 2px;
-        }
-
-        /* --- 作品櫥窗 (Grid) --- */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 4rem;
-        }
-
-        .gallery-item {
-            background: var(--white);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .gallery-img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            background-color: #eee;
-        }
-
-        /* --- 價目表 (Commission Menu) --- */
-        .price-section {
-            margin-bottom: 4rem;
-        }
-
-        .price-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .price-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--radius);
-            box-shadow: var(--card-shadow);
-            text-align: center;
-            border-top: 5px solid var(--primary);
-        }
-
-        .price-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .price-tag {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin: 1rem 0;
-        }
-
-        .price-desc {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--primary);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
-
-        .btn:hover {
-            background: #7a6ab0;
-        }
-
-        /* --- 排單進度 (Queue) --- */
-        .queue-section {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--radius);
-            box-shadow: var(--card-shadow);
-            margin-bottom: 4rem;
-        }
-
-        .queue-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .queue-item:last-child {
-            border-bottom: none;
-        }
-
-        .progress-badge {
-            padding: 0.25rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-        }
-
-        .p-draft { background: #e2e3e5; color: #383d41; } /* 草稿 */
-        .p-color { background: #fff3cd; color: #856404; } /* 上色中 */
-        .p-finish { background: #d4edda; color: #155724; } /* 完成 */
-
-        /* --- 委託須知 (TOS) --- */
-        .tos-section {
-            background: #fafafa;
-            padding: 2rem;
-            border-radius: var(--radius);
-            border: 1px dashed #ccc;
-        }
-
-        .tos-list li {
-            margin-bottom: 0.8rem;
-            margin-left: 1.5rem;
-        }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        /* 手機版調整 */
-        @media (max-width: 600px) {
-            .nav-container { gap: 1rem; font-size: 0.9rem; }
-            .price-list { grid-template-columns: 1fr; }
-        }
-    </style>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
 
@@ -279,7 +21,7 @@
         <header class="profile-header">
             <img src="https://via.placeholder.com/150" alt="Avatar" class="avatar">
             <h1>Luna Art</h1>
-            <p style="color: var(--text-gray); margin: 0.5rem 0;">日韓系厚塗 / 角色設計 / 插畫</p>
+            <p class="subtitle">日韓系厚塗 / 角色設計 / 插畫</p>
             <div class="status-badge">🟢 委託開放中 / Open</div>
             <div class="social-links">
                 <a href="#">Twitter/X</a>
@@ -291,18 +33,10 @@
         <section id="portfolio">
             <h2>作品櫥窗 Gallery</h2>
             <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x300" class="gallery-img" alt="作品集1">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x500" class="gallery-img" alt="作品集2">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x400" class="gallery-img" alt="作品集3">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x300" class="gallery-img" alt="作品集4">
-                </div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x300" class="gallery-img" alt="作品集1"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x500" class="gallery-img" alt="作品集2"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x400" class="gallery-img" alt="作品集3"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x300" class="gallery-img" alt="作品集4"></div>
             </div>
         </section>
 
@@ -319,7 +53,7 @@
                             <li>工期：約 1-2 週</li>
                         </ul>
                     </div>
-                    <a href="#" class="btn">申請委託</a>
+                    <a href="#" class="btn" onclick="alert('委託申請功能開發中！')">申請委託</a>
                 </div>
 
                 <div class="price-card">
@@ -332,7 +66,7 @@
                             <li>工期：約 2-3 週</li>
                         </ul>
                     </div>
-                    <a href="#" class="btn">申請委託</a>
+                    <a href="#" class="btn" onclick="alert('委託申請功能開發中！')">申請委託</a>
                 </div>
 
                 <div class="price-card">
@@ -345,7 +79,7 @@
                             <li>工期：約 3-4 週</li>
                         </ul>
                     </div>
-                    <a href="#" class="btn">申請委託</a>
+                    <a href="#" class="btn" onclick="alert('委託申請功能開發中！')">申請委託</a>
                 </div>
             </div>
         </section>
@@ -367,7 +101,7 @@
                 </div>
                 <div class="queue-item">
                     <span>4. (空位 / Slot)</span>
-                    <span class="progress-badge" style="border: 1px solid #ccc;">等待中</span>
+                    <span class="progress-badge waiting">等待中</span>
                 </div>
             </div>
         </section>
@@ -379,15 +113,14 @@
                 <li><strong>修改次數：</strong>草稿階段可修改 2 次，線稿確認後不接受大幅度修改。</li>
                 <li><strong>授權範圍：</strong>默認非商用（可展示、個人收藏），商用價格 x 2。</li>
                 <li><strong>退款政策：</strong>草稿階段退款 50%，線稿開始後不退款。</li>
-                <li><strong>工期：</strong>急件請先詢問，需加收急件費。</li>
             </ul>
         </section>
     </div>
 
     <footer>
         <p>&copy; 2026 Luna Art. All rights reserved.</p>
-        <p>Template designed for Creator</p>
     </footer>
 
+    <script src="js/main.js"></script>
 </body>
 </html>
